@@ -38,3 +38,23 @@ def users(request):
             users = list(User.objects.filter(role=role).values())
 
         return JsonResponse(users, safe=False)
+
+
+@csrf_exempt
+def update_user(request, user_id):
+    if request.method in ["PUT", "PATCH"]:
+        try:
+            user = User.objects.get(id=user_id)
+        except User.DoesNotExist:
+            return JsonResponse({"message": "User not found"}, status=404)
+
+        data = json.loads(request.body)
+
+        if "name" in data:
+            user.name = data["name"]
+        if "role" in data:
+            user.role = data["role"]
+
+        user.save()
+
+        return JsonResponse({"id": user.id, "name": user.name, "role": user.role})
