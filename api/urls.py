@@ -2,5 +2,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("", views.add_user, name="add-user"),
+    path("", views.users, name="get-users-or-add-user"),
 ]

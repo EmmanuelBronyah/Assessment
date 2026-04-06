@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 @csrf_exempt
-def add_user(request):
+def users(request):
     if request.method == "POST":
         data = json.loads(request.body)
 
@@ -23,3 +23,18 @@ def add_user(request):
         return JsonResponse(
             {"id": user.id, "name": user.name, "role": user.role}, status=201
         )
+
+    elif request.method == "GET":
+        role = request.GET.get("role")
+
+        if not role:
+            return JsonResponse(
+                {"message": "role query parameter is required"}, status=400
+            )
+
+        if role == "all":
+            users = list(User.objects.values())
+        else:
+            users = list(User.objects.filter(role=role).values())
+
+        return JsonResponse(users, safe=False)
