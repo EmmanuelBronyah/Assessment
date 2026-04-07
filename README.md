@@ -65,14 +65,20 @@ python manage.py runserver
 
 ### Get Users by Role
 
-- GET /users?role=admin
-- GET /users?role=vendor
-- GET /users?role=customer
-- GET /users?role=all
-  
+```http
+GET /users?role=admin
+GET /users?role=vendor
+GET /users?role=customer
+GET /users?role=all
+```
+
 ### Create User
 
-- POST /users
+```http
+POST /users
+```
+
+Request Body:
 
 ```json
 {
@@ -83,7 +89,11 @@ python manage.py runserver
 
 ### Update User
 
-- PATCH /users/<id>/
+```http
+PATCH /users/<id>/
+```
+
+Request Body (optional fields):
 
 ```json
 {
@@ -94,4 +104,6 @@ python manage.py runserver
 
 ### Delete User
 
-- DELETE /users/<id>/
+```http
+DELETE /users/<id>/
+```
