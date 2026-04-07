@@ -83,7 +83,7 @@ python manage.py runserver
 
 ### Update User
 
-- PATCH /users/<id>
+- PATCH /users/<id>/
 
 ```json
 {
@@ -94,4 +94,4 @@ python manage.py runserver
 
 ### Delete User
 
-- DELETE /users/<id>
+- DELETE /users/<id>/
